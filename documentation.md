@@ -1,4 +1,4 @@
-# Adrian Rivera docs- Backend
+# Adrian Rivera docs
 
 I ended up creating a postman to make sure all the endpoints worked befor I connected to them from the frontend. The table data should still be there but if not the postman requests can be used to add any data before using the application. 
 [Postman link](https://purpleinnovationllc.postman.co/workspace/My-Workspace~5f3a4c46-7752-4ef8-882b-932fda24ffc9/collection/23841261-93397643-5949-4f4f-af28-8512799b73d9?action=share&creator=23841261)
