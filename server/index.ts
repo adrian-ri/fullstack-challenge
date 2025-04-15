@@ -80,14 +80,14 @@ app.post('/accounts',(req, res) => {
 
 // POST /deal - Create a new deal
 app.post('/deals',(req, res) => {
-  const { organization_id, account_id } = req.body;
+  const { organization_id, account_id, value, status } = req.body;
 
   try {
     const stmt = db.prepare(`
-      INSERT INTO deals (organization_id, account_id)
-      VALUES (?, ?)
+      INSERT INTO deals (organization_id, account_id, value, status)
+      VALUES (?, ?, ?, ?)
     `);
-    const result = stmt.run(organization_id, account_id);
+    const result = stmt.run(organization_id, account_id,value, status);
 
     res.json({ 
       message: "Deal Created",
