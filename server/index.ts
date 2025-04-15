@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import initializeDatabase from "./db";
+import { Deal } from "./interfaces";
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -95,6 +96,25 @@ app.post('/deals',(req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to create deal" });
+  }
+});
+
+// GET /organizations/:id/deals - Get all deals for a specific organization
+app.get("/organizations/:id/deals", (req, res) => {
+  const orgId = Number(req.params.id);
+  // validate id is a number
+  if (isNaN(orgId)) {
+    res.status(400).json({ error: 'Invalid organization ID' });
+  }
+  try {
+    const deals = db.prepare(`SELECT * FROM deals WHERE organization_id = ?`).all(orgId) as Deal[];
+    res.json({ 
+      message: "Organization Deals",  
+      deals
+    });
+  } catch (err) {
+    console.error("Error fetching deals:", err);
+    res.status(500).json({ error: "Failed to fetch organization deals" });
   }
 });
 
